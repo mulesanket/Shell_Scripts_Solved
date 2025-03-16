@@ -18,21 +18,6 @@
 #Example: ./aws_resources_list.sh us-east-1 EC2
 ######################################################################
 
-#Check if the required number of arguments are passed
-if [ $# -eq 0 ]
-then 
-    echo "No arguments provided. Please provide region and service name"
-    exit 1
-elif [ $# -eq 1 ]
-then
-    echo "Only one argument provided. Please provide service name"
-    exit 1
-fi 
-
-#Assign the region and service name to variables
-region=$1
-aws_service=$2
-
 #Check if AWS CLI is installed
 if command -v aws 
 then 
@@ -50,6 +35,21 @@ then
 else
     echo "AWS CLI is configured"
 fi
+
+#Assign the region and service name to variables
+region=$1
+aws_service=$2
+
+#Check if the required number of arguments are passed
+if [ $# -eq 0 ]
+then 
+    echo "No arguments provided. Please provide region and service name"
+    exit 1
+elif [ $# -eq 1 ]
+then
+    echo "Only one argument provided. Please provide service name"
+    exit 1
+fi 
 
 #Execute the AWS CLI command based on the service name
 case $aws_service in
